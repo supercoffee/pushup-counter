@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">PushupCounter</string>
+    <string name="initial_count">0</string>
+</resources>
