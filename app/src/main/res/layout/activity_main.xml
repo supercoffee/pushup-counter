@@ -9,8 +9,9 @@
         android:id="@+id/btn_count"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:backgroundTint="@color/colorAccent"
+        android:background="@android:color/black"
         android:text="@string/initial_count"
-        android:textSize="96sp" />
+        android:textSize="96sp"
+        android:textColor="@android:color/white"/>
 
 </android.support.constraint.ConstraintLayout>
