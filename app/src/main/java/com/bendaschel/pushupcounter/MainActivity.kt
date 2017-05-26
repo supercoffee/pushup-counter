@@ -7,7 +7,6 @@ import android.support.v4.graphics.ColorUtils
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import java.util.*
 
@@ -16,13 +15,11 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var  btnCount: Button
     private lateinit var toolbar: Toolbar
-    private lateinit var appTitle: TextView
 
     private var count = 0
 
     fun bindViews() {
         toolbar = findViewById(R.id.toolbar) as Toolbar
-        appTitle = findViewById(R.id.tv_app_title) as TextView
         btnCount = findViewById(R.id.btn_count) as Button
     }
 
@@ -37,17 +34,7 @@ class MainActivity : AppCompatActivity() {
             count++
             if (v is Button) {
                 v.text = count.toString()
-                val red = Random().nextInt()
-                val green = Random().nextInt()
-                val blue = Random().nextInt()
-                val bgColor = Color.rgb(square(red), square(green), square(blue))
-                val textColor = toHSV(bgColor)
-                v.setTextColor(textColor)
-                v.setBackgroundColor(bgColor)
-                toolbar.background = ColorDrawable(bgColor)
-                appTitle.setTextColor(textColor)
-                window.setBackgroundDrawable(ColorDrawable(bgColor))
-                window.statusBarColor = ColorUtils.blendARGB(bgColor, Color.BLACK, 0.2f)
+                updateColors()
             }
         }
         btnCount.setOnLongClickListener { v ->
@@ -58,5 +45,22 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+
+        updateColors()
     }
+
+    fun updateColors() {
+        val red = Random().nextInt(255)
+        val green = Random().nextInt(255)
+        val blue = Random().nextInt(255)
+        val bgColor = Color.rgb(red, green, blue)
+        val textColor = complementaryColor(bgColor)
+        btnCount.setTextColor(textColor)
+        btnCount.setBackgroundColor(bgColor)
+        toolbar.background = ColorDrawable(bgColor)
+        toolbar.setTitleTextColor(textColor)
+        window.setBackgroundDrawable(ColorDrawable(bgColor))
+        window.statusBarColor = ColorUtils.blendARGB(bgColor, Color.BLACK, 0.2f)
+    }
+
 }
