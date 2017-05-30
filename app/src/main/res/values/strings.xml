@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">PushupCounter</string>
     <string name="initial_count">0</string>
+    <string name="toast_counter_reset">Counter Reset</string>
 </resources>

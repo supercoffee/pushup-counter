@@ -1,22 +1,20 @@
 package com.bendaschel.pushupcounter
 
+import android.arch.lifecycle.LifecycleActivity
+import android.arch.lifecycle.ViewModelProviders
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v4.graphics.ColorUtils
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.widget.Button
 import android.widget.Toast
+import android.widget.Toolbar
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
-
+class MainActivity : LifecycleActivity() {
 
     private lateinit var  btnCount: Button
     private lateinit var toolbar: Toolbar
-
-    private var count = 0
 
     fun bindViews() {
         toolbar = findViewById(R.id.toolbar) as Toolbar
@@ -28,25 +26,23 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         bindViews()
 
-        setSupportActionBar(toolbar)
+        val countViewModel = ViewModelProviders.of(this).get(CountViewModel::class.java)
 
-        btnCount.setOnClickListener { v ->
-            count++
-            if (v is Button) {
-                v.text = count.toString()
-                updateColors()
-            }
+        countViewModel.getCount().observe(this, android.arch.lifecycle.Observer {
+            btnCount.text = it?.toString()
+            updateColors()
+        })
+
+        setActionBar(toolbar)
+
+        btnCount.setOnClickListener {
+            countViewModel.inc()
         }
-        btnCount.setOnLongClickListener { v ->
-            count = 0
-            Toast.makeText(this, "Counter reset", Toast.LENGTH_SHORT).show()
-            if (v is Button) {
-                v.text = count.toString()
-            }
+        btnCount.setOnLongClickListener {
+            countViewModel.reset()
+            Toast.makeText(this, R.string.toast_counter_reset, Toast.LENGTH_SHORT).show()
             true
         }
-
-        updateColors()
     }
 
     fun updateColors() {
