@@ -4,10 +4,13 @@ import android.arch.lifecycle.LifecycleActivity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.arch.persistence.room.Room
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v4.graphics.ColorUtils
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.Toast
 import android.widget.Toolbar
@@ -33,7 +36,6 @@ class MainActivity : LifecycleActivity() {
 
         appDb = Room.databaseBuilder(this.applicationContext, AppDatabase::class.java, "app-db")
                 .allowMainThreadQueries()
-                .addMigrations()
                 .build()
 
         val countViewModel = ViewModelProviders.of(this).get(CountViewModel::class.java)
@@ -54,6 +56,11 @@ class MainActivity : LifecycleActivity() {
             Toast.makeText(this, R.string.toast_counter_reset, Toast.LENGTH_SHORT).show()
             true
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
+        return true
     }
 
     private fun saveCount(value: Int?) {
@@ -77,4 +84,17 @@ class MainActivity : LifecycleActivity() {
         window.statusBarColor = ColorUtils.blendARGB(bgColor, Color.BLACK, 0.2f)
     }
 
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        val id = item?.itemId
+
+        when(id){
+            R.id.menu_history -> {
+                val intent = Intent(this, HistoryActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
 }
