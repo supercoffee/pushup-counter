@@ -13,36 +13,36 @@ import java.util.*
 
 class MainActivity : LifecycleActivity() {
 
-    private lateinit var  btnCount: Button
-    private lateinit var toolbar: Toolbar
+    private val countButton by lazy {
+        findViewById(R.id.btn_count) as Button
+    }
 
-    fun bindViews() {
-        toolbar = findViewById(R.id.toolbar) as Toolbar
-        btnCount = findViewById(R.id.btn_count) as Button
+    private val toolbar by lazy {
+        findViewById(R.id.toolbar) as Toolbar
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        bindViews()
 
         val countViewModel = ViewModelProviders.of(this).get(CountViewModel::class.java)
 
-        countViewModel.getCount().observe(this, android.arch.lifecycle.Observer {
-            btnCount.text = it?.toString()
+        countViewModel.getCount().observe(this, android.arch.lifecycle.Observer { value ->
+            countButton.text = value?.toString()
             updateColors()
         })
 
         setActionBar(toolbar)
 
-        btnCount.setOnClickListener {
-            countViewModel.inc()
+        countButton.setOnClickListener {
+            countViewModel.add()
         }
-        btnCount.setOnLongClickListener {
+        countButton.setOnLongClickListener {
             countViewModel.reset()
             Toast.makeText(this, R.string.toast_counter_reset, Toast.LENGTH_SHORT).show()
             true
         }
+
     }
 
     fun updateColors() {
@@ -51,8 +51,8 @@ class MainActivity : LifecycleActivity() {
         val blue = Random().nextInt(255)
         val bgColor = Color.rgb(red, green, blue)
         val textColor = complementaryColor(bgColor)
-        btnCount.setTextColor(textColor)
-        btnCount.setBackgroundColor(bgColor)
+        countButton.setTextColor(textColor)
+        countButton.setBackgroundColor(bgColor)
         toolbar.background = ColorDrawable(bgColor)
         toolbar.setTitleTextColor(textColor)
         window.setBackgroundDrawable(ColorDrawable(bgColor))

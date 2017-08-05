@@ -16,7 +16,7 @@ class CountViewModel: ViewModel() {
         return count
     }
 
-    fun inc() {
+    fun add() {
         count.value = count.value?.inc()
     }
 
