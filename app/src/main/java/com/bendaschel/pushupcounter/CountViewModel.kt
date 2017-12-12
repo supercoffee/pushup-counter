@@ -17,6 +17,7 @@ class CountViewModel: ViewModel() {
     }
 
     fun add() {
+        // Again, nullable type here due to inference from Java code
         count.value = count.value?.inc()
     }
 

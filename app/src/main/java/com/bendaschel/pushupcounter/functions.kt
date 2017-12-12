@@ -2,6 +2,7 @@ package com.bendaschel.pushupcounter
 
 import android.graphics.Color
 
+// Example of single expression function declaration
 fun square(a: Int) = a * a
 
 fun complementaryColor(rgb: Int): Int {
