@@ -1,0 +1,31 @@
+Privacy Policy
+
+We highly respect your privacy and are committed to ensuring the protection of your personal information. This Privacy Policy outlines our practices regarding the collection, use, and disclosure of information when you use our mobile application [App Name].
+
+No Information Collection:
+
+We want to reassure you that absolutely no information is collected from you during your usage of our application. We do not gather any personal data, browsing history, or any other information that can be used to identify you as an individual.
+
+Usage of the App:
+
+Our application is designed to function without requiring any personal information from users. You can freely use all features and functionalities of our app without providing any personal data.
+
+Data Storage:
+
+Since we do not collect any user information, there is no data stored by us related to your usage of the app. This ensures that your privacy remains intact and your information is never at risk of being exposed.
+
+Third-Party Services:
+
+Our application does not integrate any third-party services that may collect data from users. We do not utilize analytics tools, advertising networks, or any other external services that may compromise your privacy.
+
+Changes to Privacy Policy:
+
+We reserve the right to modify or update this Privacy Policy at any time. Any changes made will be posted within the application or on our website. We encourage you to review this Privacy Policy periodically for any updates.
+
+Contact Us:
+
+If you have any questions or concerns regarding our Privacy Policy or the practices of our application, please feel free to contact us at [contact email].
+
+By using our application, you consent to the terms outlined in this Privacy Policy.
+
+Last updated: 2022-02-4
